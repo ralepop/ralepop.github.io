@@ -19,8 +19,8 @@
     }
 
     h1 {
-        font-size: 48px;
-        margin-bottom: 40px;
+        font-size: 80px;
+        margin-bottom: 60px;
         text-transform: lowercase;
         position: relative;
         display: inline-block;
@@ -39,25 +39,29 @@
 
     .buttons {
         margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; 
+        gap: 20px;
     }
 
     .buttons a {
         position: relative;
         display: inline-block;
-        margin: 10px;
-        padding: 12px 24px;
-        font-size: 18px;
+        padding: 20px 40px; 
+        font-size: 24px; 
         color: white;
         background-color: transparent;
         border: 2px solid white;
         text-decoration: none;
-        border-radius: 4px;
+        border-radius: 6px;
         text-transform: lowercase;
         transition: 0.3s;
         overflow: hidden;
+        flex: 1 1 200px; 
+        max-width: 300px;
     }
 
-    /* NOVI efekat: streak / blur trail */
     .buttons a::after {
         content: '';
         position: absolute;
@@ -65,7 +69,7 @@
         left: 50%;
         width: 0;
         height: 0;
-        background: rgba(0, 255, 0, 0.3);
+        background: rgba(255, 255, 255, 0.2);
         filter: blur(15px);
         border-radius: 50%;
         transform: translate(-50%, -50%);
@@ -76,21 +80,58 @@
     .buttons a:hover::after {
         width: 300%;
         height: 400%;
-        background: linear-gradient(45deg, rgba(0,255,0,0.3), rgba(0,255,0,0.05));
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
         filter: blur(25px);
     }
 
     .buttons a:hover {
         color: #000;
         background-color: white;
-        box-shadow: 0 0 10px white, 0 0 20px white, 0 0 40px white;
+        box-shadow: 0 0 15px white, 0 0 30px white, 0 0 50px white;
     }
 
     p {
-        font-size: 16px;
+        font-size: 20px;
         margin-top: 50px;
         text-transform: lowercase;
         color: white;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
+    @media screen and (max-width: 768px) {
+        body {
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 45px;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            flex-direction: column;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 25px;
+        }
+
+        .buttons a {
+            font-size: 24px; 
+            padding: 22px 0;
+            width: 90%;
+            max-width: 350px;
+            flex: none;
+            animation: pulse 2s infinite;
+        }
+
+        p {
+            font-size: 16px;
+        }
     }
 </style>
 </head>
@@ -103,6 +144,5 @@
         <a href="https://github.com/ralepop" target="_blank">github</a>
         <a href="https://www.linkedin.com/in/rastkopopovic/" target="_blank">linkedin</a>
     </div>
-
 </body>
 </html>
