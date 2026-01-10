@@ -1,1 +1,108 @@
-<h1>Rastko Popović</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>rale</title>
+<style>
+    body {
+        background-color: #000;
+        color: white;
+        font-family: "Courier New", monospace;
+        text-align: center;
+        padding: 80px;
+        animation: fadein 1.5s ease-in;
+    }
+
+    @keyframes fadein {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    h1 {
+        font-size: 48px;
+        margin-bottom: 40px;
+        text-transform: lowercase;
+        position: relative;
+        display: inline-block;
+        color: white;
+        animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+        0% { text-shadow: 2px 0 white, -2px 2px white; }
+        20% { text-shadow: -2px -2px white, 2px 2px white; }
+        40% { text-shadow: 2px 2px white, -2px -2px white; }
+        60% { text-shadow: -2px 0 white, 2px -2px white; }
+        80% { text-shadow: 2px -2px white, -2px 2px white; }
+        100% { text-shadow: 2px 0 white, -2px 2px white; }
+    }
+
+    .buttons {
+        margin-top: 30px;
+    }
+
+    .buttons a {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 24px;
+        font-size: 18px;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+        text-decoration: none;
+        border-radius: 4px;
+        text-transform: lowercase;
+        transition: 0.3s;
+        overflow: hidden;
+    }
+
+    /* NOVI efekat: streak / blur trail */
+    .buttons a::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(0, 255, 0, 0.3);
+        filter: blur(15px);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.4s ease;
+        z-index: -1;
+    }
+
+    .buttons a:hover::after {
+        width: 300%;
+        height: 400%;
+        background: linear-gradient(45deg, rgba(0,255,0,0.3), rgba(0,255,0,0.05));
+        filter: blur(25px);
+    }
+
+    .buttons a:hover {
+        color: #000;
+        background-color: white;
+        box-shadow: 0 0 10px white, 0 0 20px white, 0 0 40px white;
+    }
+
+    p {
+        font-size: 16px;
+        margin-top: 50px;
+        text-transform: lowercase;
+        color: white;
+    }
+</style>
+</head>
+<body>
+    <h1>rastko popović</h1>
+
+    <div class="buttons">
+        <a href="mailto:ja@rastkopopovic.com">email</a>
+        <a href="https://www.instagram.com/_rastko_popovic" target="_blank">instagram</a>
+        <a href="https://github.com/ralepop" target="_blank">github</a>
+        <a href="https://www.linkedin.com/in/rastkopopovic/" target="_blank">linkedin</a>
+    </div>
+
+</body>
+</html>
