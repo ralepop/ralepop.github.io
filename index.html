@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>rale</title>
 <style>
     body {
@@ -9,8 +10,9 @@
         color: white;
         font-family: "Courier New", monospace;
         text-align: center;
-        padding: 80px;
+        padding: 80px 20px;
         animation: fadein 1.5s ease-in;
+        margin: 0;
     }
 
     @keyframes fadein {
@@ -60,41 +62,37 @@
         overflow: hidden;
         flex: 1 1 200px; 
         max-width: 300px;
+        box-sizing: border-box;
     }
 
-    .buttons a::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.2);
-        filter: blur(15px);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: all 0.4s ease;
-        z-index: -1;
-    }
+    @media (hover: hover) {
+        .buttons a::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            filter: blur(15px);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
 
-    .buttons a:hover::after {
-        width: 300%;
-        height: 400%;
-        background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
-        filter: blur(25px);
-    }
+        .buttons a:hover::after {
+            width: 300%;
+            height: 400%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+            filter: blur(25px);
+        }
 
-    .buttons a:hover {
-        color: #000;
-        background-color: white;
-        box-shadow: 0 0 15px white, 0 0 30px white, 0 0 50px white;
-    }
-
-    p {
-        font-size: 20px;
-        margin-top: 50px;
-        text-transform: lowercase;
-        color: white;
+        .buttons a:hover {
+            color: #000;
+            background-color: white;
+            box-shadow: 0 0 15px white, 0 0 30px white, 0 0 50px white;
+        }
     }
 
     @keyframes pulse {
@@ -105,32 +103,31 @@
 
     @media screen and (max-width: 768px) {
         body {
-            padding: 60px 20px;
+            padding: 40px 20px;
         }
 
         h1 {
-            font-size: 45px;
-            margin-bottom: 40px;
+            font-size: 40px;
+            margin-bottom: 80px; 
+            display: block;
         }
 
         .buttons {
-            flex-direction: column;
-            align-items: center;
-            flex-wrap: nowrap;
-            gap: 25px;
+            flex-direction: column !important;
+            align-items: center !important;
+            flex-wrap: nowrap !important;
+            gap: 20px;
+            margin-top: 0;
         }
 
         .buttons a {
-            font-size: 24px; 
-            padding: 22px 0;
-            width: 90%;
-            max-width: 350px;
-            flex: none;
+            display: block !important;
+            width: 100% !important;
+            max-width: 280px !important;
+            font-size: 22px !important;
+            padding: 18px 0 !important;
+            flex: none !important;
             animation: pulse 2s infinite;
-        }
-
-        p {
-            font-size: 16px;
         }
     }
 </style>
