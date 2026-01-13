@@ -1,204 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>rale</title>
-<style>
-    body {
-        background-color: #000;
-        color: white;
-        font-family: "Courier New", monospace;
-        text-align: center;
-        padding: 80px 20px;
-        animation: fadein 1.5s ease-in;
-        margin: 0;
-        overflow-x: hidden;
-        position: relative;
-    }
-
-    #bg-animation {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        pointer-events: none;
-        overflow: hidden;
-    }
-
-    .rale-flake {
-        position: absolute;
-        top: -10vh;
-        color: #9b9b9b;
-        font-size: 14px;
-        opacity: 0.9;
-        user-select: none;
-        will-change: transform;
-    }
-
-    @keyframes rale-fall {
-        0% { top: -10vh; }
-        100% { top: 110vh; }
-    }
-
-    @keyframes rale-spin {
-        0% { transform: translateX(0) rotate(0deg); }
-        50% { transform: translateX(20px) rotate(180deg); }
-        100% { transform: translateX(-20px) rotate(360deg); }
-    }
-   
-
-    @keyframes fadein {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    h1 {
-        font-size: 80px;
-        margin-bottom: 60px;
-        text-transform: lowercase;
-        position: relative;
-        display: inline-block;
-        color: white;
-        animation: glitch 1s infinite;
-        background: #000;
-        padding: 0 10px;
-    }
-
-    @keyframes glitch {
-        0% { text-shadow: 2px 0 white, -2px 2px white; }
-        20% { text-shadow: -2px -2px white, 2px 2px white; }
-        40% { text-shadow: 2px 2px white, -2px -2px white; }
-        60% { text-shadow: -2px 0 white, 2px -2px white; }
-        80% { text-shadow: 2px -2px white, -2px 2px white; }
-        100% { text-shadow: 2px 0 white, -2px 2px white; }
-    }
-
-    .buttons {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap; 
-        gap: 20px;
-        position: relative;
-        z-index: 2;
-    }
-
-    .buttons a {
-        position: relative;
-        display: inline-block;
-        padding: 20px 40px; 
-        font-size: 24px; 
-        color: white;
-        background-color: #000;
-        border: 2px solid white;
-        text-decoration: none;
-        border-radius: 6px;
-        text-transform: lowercase;
-        transition: 0.3s;
-        overflow: hidden;
-        flex: 1 1 200px; 
-        max-width: 300px;
-        box-sizing: border-box;
-    }
-
-    @media (hover: hover) {
-        .buttons a::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            filter: blur(15px);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.4s ease;
-            z-index: -1;
-        }
-
-        .buttons a:hover::after {
-            width: 300%;
-            height: 400%;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
-            filter: blur(25px);
-        }
-
-        .buttons a:hover {
-            color: #000;
-            background-color: white;
-            box-shadow: 0 0 15px white, 0 0 30px white, 0 0 50px white;
-        }
-    }
-
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
-        70% { box-shadow: 0 0 0 11px rgba(255, 255, 255, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-    }
-
-    @media screen and (max-width: 768px) {
-        body { padding: 40px 20px; }
-        h1 { font-size: 40px; margin-bottom: 70px; display: block; }
-        .buttons {
-            flex-direction: column !important;
-            align-items: center !important;
-            flex-wrap: nowrap !important;
-            gap: 25px;
-            margin-top: 0;
-        }
-        .buttons a {
-            display: block !important;
-            width: 100% !important;
-            max-width: 280px !important;
-            font-size: 22px !important;
-            padding: 18px 0 !important;
-            flex: none !important;
-            animation: pulse 2s infinite;
-        }
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rale</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
+    <div id="custom-cursor">+</div>
     <div id="bg-animation"></div>
 
     <h1>rastko popović</h1>
 
-    <div class="buttons">
+    <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
+        <div class="terminal-header">user@rale:~ (type 'help')</div>
+        <div id="terminal-output" class="terminal-output">Type 'help' to see available commands.
+        </div>
+        <div class="terminal-input-line">
+            <span class="prompt">user@rale:~$</span>
+            <input type="text" id="cmd-input" autocomplete="off" spellcheck="false" enterkeyhint="done">
+        </div>
+    </div>
+
+    <div id="contact-section" class="buttons hidden">
         <a href="mailto:ja@rastkopopovic.com">email</a>
         <a href="https://www.instagram.com/_rastko_popovic" target="_blank">instagram</a>
         <a href="https://github.com/ralepop" target="_blank">github</a>
         <a href="https://www.linkedin.com/in/rastkopopovic/" target="_blank">linkedin</a>
     </div>
 
-    <script>
-        const bgContainer = document.getElementById('bg-animation');
-        const flakeCount = 80;
-
-        for (let i = 0; i < flakeCount; i++) {
-            const flake = document.createElement('div');
-            flake.classList.add('rale-flake');
-            flake.innerText = 'rale';
-            
-            const leftPos = Math.random() * 100;
-            const duration = Math.random() * 5 + 5;
-            const delay = Math.random() * 5;
-            const size = Math.random() * 10 + 10;
-            const opacity = Math.random() * 0.5 + 0.1;
-
-            flake.style.left = leftPos + 'vw';
-            flake.style.fontSize = size + 'px';
-            flake.style.opacity = opacity;
-            
-            flake.style.animation = `rale-fall ${duration}s linear infinite, rale-spin ${duration * 1.5}s ease-in-out infinite`;
-            flake.style.animationDelay = `-${delay}s`; 
-
-            bgContainer.appendChild(flake);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
