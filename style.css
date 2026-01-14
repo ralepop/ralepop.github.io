@@ -1,4 +1,4 @@
-body {
+ body {
     background-color: #000;
     color: white;
     font-family: "Courier New", monospace;
@@ -6,47 +6,6 @@ body {
     padding: 80px 20px;
     animation: fadein 1.5s ease-in;
     margin: 0;
-    overflow-x: hidden;
-    position: relative;
-}
-
-#bg-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.rale-flake {
-    position: absolute;
-    top: -10vh;
-    color: #9b9b9b;
-    font-size: 14px;
-    opacity: 0.6;
-    user-select: none;
-    will-change: transform;
-}
-
-@keyframes rale-fall-spin {
-    0% { 
-        transform: translateY(0) translateX(0) rotate(0deg); 
-    }
-    25% {
-        transform: translateY(30vh) translateX(15px) rotate(90deg);
-    }
-    50% { 
-        transform: translateY(60vh) translateX(-15px) rotate(180deg); 
-    }
-    75% {
-        transform: translateY(90vh) translateX(10px) rotate(270deg);
-    }
-    100% { 
-        transform: translateY(120vh) translateX(0) rotate(360deg); 
-    }
 }
 
 @keyframes fadein {
@@ -62,9 +21,6 @@ h1 {
     display: inline-block;
     color: white;
     animation: glitch 1s infinite;
-    background: transparent; 
-    padding: 0 10px;
-    z-index: 1;
 }
 
 @keyframes glitch {
@@ -82,8 +38,6 @@ h1 {
     justify-content: center;
     flex-wrap: wrap; 
     gap: 20px;
-    position: relative;
-    z-index: 2;
 }
 
 .buttons a {
@@ -92,7 +46,7 @@ h1 {
     padding: 20px 40px; 
     font-size: 24px; 
     color: white;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: transparent;
     border: 2px solid white;
     text-decoration: none;
     border-radius: 6px;
@@ -105,10 +59,32 @@ h1 {
 }
 
 @media (hover: hover) {
+    .buttons a::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        filter: blur(15px);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.4s ease;
+        z-index: -1;
+    }
+
+    .buttons a:hover::after {
+        width: 300%;
+        height: 400%;
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+        filter: blur(25px);
+    }
+
     .buttons a:hover {
         color: #000;
         background-color: white;
-        box-shadow: 0 0 15px white, 0 0 30px white;
+        box-shadow: 0 0 15px white, 0 0 30px white, 0 0 50px white;
     }
 }
 
@@ -119,16 +95,31 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-    body { padding: 40px 20px; }
-    h1 { font-size: 40px; margin-bottom: 70px; display: block; }
+    body {
+        padding: 40px 20px;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin-bottom: 70px; 
+        display: block;
+    }
+
     .buttons {
         flex-direction: column !important;
         align-items: center !important;
+        flex-wrap: nowrap !important;
         gap: 25px;
+        margin-top: 0;
     }
+
     .buttons a {
+        display: block !important;
+        width: 100% !important;
         max-width: 280px !important;
         font-size: 22px !important;
         padding: 18px 0 !important;
+        flex: none !important;
+        animation: pulse 2s infinite;
     }
 }
