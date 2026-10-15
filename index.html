@@ -10,10 +10,20 @@
     <h1>rastko popović</h1>
 
     <div class="buttons">
-        <a href="mailto:ja@rastkopopovic.com">email</a>
+        <a href="#" id="kontakt-link">email</a>
         <a href="https://t.me/ralepop" target="_blank">telegram</a>
         <a href="https://github.com/ralepop" target="_blank">github</a>
         <a href="https://www.linkedin.com/in/rastkopopovic/" target="_blank">linkedin</a>
     </div>
+
+    <script>
+        document.getElementById("kontakt-link").addEventListener("click", function(e) {
+        e.preventDefault();
+        const u = "kontakt";
+        const d = "rastkopopovic.com";
+        window.location.href = "mailto:" + u + "@" + d;
+        });
+    </script>
+    
 </body>
 </html>
